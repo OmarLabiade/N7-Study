@@ -19,9 +19,9 @@
 int mandelbrot(complexe_t z0, complexe_t c, double seuil, int maxit) {
     int nombre_iterations = 0;
     complexe_t z_n = z0;
-    while ((module(z_n) <= seuil ) && (nombre_iterations <= maxit)){
-        puissance(&z_n,z_n,2);
-        ajouter(&z_n,z_n,c);
+    while (( module(z_n) <= seuil ) && ( nombre_iterations <= maxit )){
+        puissance(&z_n, z_n, 2);
+        ajouter(&z_n, z_n, c);
         nombre_iterations ++;
     }
     return nombre_iterations;

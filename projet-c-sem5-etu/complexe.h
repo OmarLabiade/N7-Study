@@ -7,49 +7,68 @@ struct Complexe {
     double Imag;
 };
 typedef struct Complexe complexe_t;
+
 // Fonctions reelle et imaginaire
 /**
  * reelle
- * 
- * Retourner la partie reelle d'un nombre complexe.
- * Param : C complexe_t 
- * Retourne : C.Reel double 
- */
+ *
+ * Donner la partie reelle d'un nombre complexe.
+ * Paramètres:
+ *  C             [in] Complexe
+ * retourne : partie reelle de C
+ * Pré-conditions :  Rien
+ * Post-conditions : reelle(C) = C.Reel 
+ */ 
 double reelle(complexe_t C);
 
+// Fonctions reelle et imaginaire
 /**
  * imaginaire
- * 
- * Retourner la partie imaginaire d'un nombre complexe.
- * Param : C complexe_t in
- * Retourne : C.imaginaire double
- */
+ *
+ * Donner la partie imaginaire d'un nombre complexe.
+ * Paramètres:
+ *  C             [in] Complexe
+ * retourne : partie imaginaire de C
+ * Pré-conditions :  Rien
+ * Post-conditions : imaginaire(C) = C.Imag
+ */ 
 double imaginaire(complexe_t C);
 // Procédures set_reelle, set_imaginaire et init
 /**
  * set_reelle
  *
- * Modifier la partie réelle du nombre complexe 
- * Param : C complexe_t,R double
- * Retourne : Rien (Procedure)
+ * Modifier la partie Reelle d'un nombre complexe 
+ * Paramètres : 
+ *   resultat       [out] Complexe dont on change la composante Relle
+ *   R              [in]  partie Reelle
+ * Pré-conditions : resultat non null
+ * Post-conditions : resultat -> Reel = R
  */ 
 void set_reelle(complexe_t* resultat , double R);
-
 /**
  * set_imaginaire
  *
- * Modifier la partie imaginaire du nombre complexe 
- * Param : C complexe_t,I double
- * Retourne : Rien (Procedure)
+ * Modifier la partie imaginaire d'un nombre complexe 
+ * Paramètres : 
+ *   resultat       [out] Complexe dont on change la composante Imaginaire
+ *   I              [in]  partie Imaginaire
+ * Pré-conditions : resultat non null
+ * Post-conditions : resultat -> Imag = I
  */ 
 void set_imaginaire(complexe_t* resultat,double I);
 
 /**
  * init
  *
- * Modifier la partie reel et imaginaire du nombre complexe 
- * Param : C complexe_t,R double,I double
- * Retourne : Rien (Procedure)
+ * Modifier la partie reel et imaginaire d'un nombre complexe 
+ * 
+ * Paramètres : 
+ *   resultat       [out] Complexe dont on change les composantes
+ *   R              [in]  partie Reelle
+ *   I              [in]  partie Imaginaire
+ * 
+ * Pré-conditions : resultat non null
+ * Post-conditions : resultat -> Reel = R et resultat -> Imag = I
  */ 
 void init(complexe_t* resultat,double R,double I);
 
@@ -165,7 +184,7 @@ void puissance(complexe_t* resultat, complexe_t op, int exposant);
  *   C            [in]  Complexe 
  * retourne : module au carree de C
  * Pré-conditions :  Rien
- * Post-conditions : module = module de op, module reel positif
+ * Post-conditions : module_carre(C) = module carrw de C, module_carre(C)>=0
  */
 double module_carre(complexe_t C);
 
@@ -177,7 +196,7 @@ double module_carre(complexe_t C);
  *   C            [in]  Complexe 
  * retourne : module de C
  * Pré-conditions :  Rien
- * Post-conditions : module = module de op, module reel positif
+ * Post-conditions : module(C) = module de C, module(C)>=0
  */
 double module(complexe_t C);
 /**
@@ -186,7 +205,7 @@ double module(complexe_t C);
  * Calculer l'argument d'un complexe non nul
  * Paramètres:
  *  C             [in] Complexe
- * retourne : Arg de C
+ * retourne : Argument de C
  * Pré-conditions :  C non nul
  * Post-conditions : Argument(C) = Argument de C et -pi<Argument(C)<= pi
  */ 

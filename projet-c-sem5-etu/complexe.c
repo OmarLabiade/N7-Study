@@ -13,10 +13,10 @@ double imaginaire(complexe_t C){
 void set_reelle(complexe_t* resultat, double R){
     resultat -> Reel = R;
     }
-void set_imaginaire(complexe_t* resultat,double I){
+void set_imaginaire(complexe_t* resultat, double I){
     resultat-> Imag = I;
     }
-void init(complexe_t* resultat,double R,double I){
+void init(complexe_t* resultat, double R, double I){
     resultat -> Reel = R;
     resultat -> Imag = I;
     }
