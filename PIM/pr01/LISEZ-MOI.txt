@@ -1,0 +1,155 @@
+--------------------------------------------------------------------------------
+Nom       : Labiade
+Prénom    : Omar
+Groupe TP : A
+--------------------------------------------------------------------------------
+
+Consigne : Dans ce fichier, les « ... » indiquent les endroits à compléter.
+Il s'agit de remplacer les « ... » par votre texte.  Merci de laisser une
+ligne blanche avant.  Le texte déjà écrit doit être conservé !
+
+
+=====[ Temps passé ]============================================================
+
+Ces informations de temps sont demandées à titre indicatif et ne sont en
+aucun cas prises en compte dans la notation du projet.
+Il faut remplacer les ... par des nombres.
+
+* Temps passé sur la V1 : 8 heures 30 minutes
+* Temps passé sur la V2 : 7 heures 00 minutes
+
+Pour la V2 on ne tiendra pas compte du temps passé sur la V1.
+
+
+=====[ Tests ]==================================================================
+
+-- Expliquer en quelques phrases comment vous avez testé votre programme (et
+-- quels tests ont été réalisés).
+
+j'ai essaye de traiter tous les cas possibles et voir que tous les cas particulier fonctionne comme prevue
+
+
+=====[ Difficultés ]============================================================
+
+-- Indiquer les difficultés rencontrées et les solutions apportées.
+
+Rendre le document de raffinage plus lisible (mettre les fonctions en gras,ajuster les guillemets affiches ...etc)
+l'utilisation de sous programme Alea, 
+
+
+
+=====[ Remarques diverses ]=====================================================
+
+Remarque : Cette rubrique peut être vide.
+
+
+
+
+=====[ Questions ]==============================================================
+
+-- Dans cette partie, on ne demande pas de modifier le programme écrit.  On
+-- doit expliquer de manière précise et concise ce qu'il faudrait faire pour
+-- prendre en compte les évolutions demandées.
+
+Q1 : Quand on demande le niveau de jeu de l'ordinateur, on veut pouvoir
+répondre « distrait », « naïf », « rapide », etc.  On remarque que le premier
+caractère correspond bien à la lettre à taper pour le niveau considéré.
+Est-ce possible dans votre programme ?  Dans la négative, comment le modifier
+pour que ce soit possible ?
+
+Ce n'est pas possible car les variables définies (celles tapées par l'utilisateur) sont des caractères et non une chaîne de caractères. Pour cela, on doit modifier leur type de 'caractère' à 'string'.
+
+
+Q2 : Quelles modifications faut-il apporter au programme pour avoir des
+allumettes représentées par 4 barres verticales (et non 3).
+
+On change la première boucle 'pour', responsable de l'affichage des allumettes, par 3 barres verticales.
+49		for i in 1..3 loop   
+--> 
+49		for i in 1..4 loop 
+
+
+Q3 : Quelles modifications faut-il apporter au programme pour afficher les
+allumettes groupées par 4 (et non par 5).
+
+On change la condition responsable de ce regroupement 
+51				if j mod 5 = 0 then
+->
+51				if j mod 4 = 0 then
+			
+
+
+Q4 : Quand l'utilisateur choisit le niveau de jeu, on veut qu'il puisse aussi
+donner un chiffre (0 pour distrait, 1 pour naïf, 2 pour rapide et 3 pour
+expert).  Quelles modifications faut-il apporter au programme ?
+
+On modifie le premier selon ('case') pour introduire les caractères 0, 1, 2. Quand l'utilisateur tape un nombre, le programme l'interprète toujours comme un caractère(on ne change pas le type des variables ), d'où le changement dans le code suivant
+35		  when 'n' | 'N'  => Put("Mon Niveau est naif");
+36		  when 'd' | 'D'  => Put("Mon Niveau est distrait");
+37		  when 'r' | 'R'  => Put("Mon Niveau est rapide");
+->
+35		  when 'n' | 'N' | '0'  => Put("Mon Niveau est naif");
+36		  when 'd' | 'D' | '1'  => Put("Mon Niveau est distrait");
+37		  when 'r' | 'R' | '2'  => Put("Mon Niveau est rapide"); 
+-- le cas expert ne nécessite pas de changement 
+
+
+Q5 : On veut ajouter un nouveau mode de jeu pour la machine. Par exemple, un
+mode « lent » où l'ordinateur prend toujours une seule allumette.  Quelles
+modifications faut-il apporter au programme ?
+
+modifier le premier message du demande de niveau choisie
+31	Put("Niveau de l'ordinateur (n)aïf, (d)istrait, (r)apide ou (e)xpert ? ");
+->
+31	Put("Niveau de l'ordinateur (n)aïf, (d)istrait,(l)lent, (r)apide ou (e)xpert ? ");
+on ajoute au premier selon 'case' le cas du niveau lent pour l'affichage 
+ajout du ligne avant 'when others' (ligne 38)
+		when 'l' | 'L'  => Put("Mon Niveau est lent");
+idem on doit changer la partie qui correspond au tour de l'ordinteur
+				when 'l' | 'L' => 
+					Nombre_a_prendre := 1
+					Put("Je prends " & integer'image(Nombre_a_prendre) & " allumettes"); 
+					New_Line;
+
+
+Q6 : On veut que l'utilisateur puisse abandonner la partie en donnant un
+nombre d'allumettes strictement négatif.  Quelles modifications faut-il faire
+sur le programme ?
+
+on ajoute un SinonSi (elsif) dans la partie traitant le choix de lutilisateur.
+
+			loop
+				--instructions
+				if Nombre_allumettes_a_retirer <= 3 and Nombre_allumettes_a_retirer >= 1 then
+					--instructions
+					else
+						--instructions
+					end if;
+				elsif Nombre_allumettes_a_retirer = 0 then
+					--instructions
+				else
+					--instructions
+				end if;
+			exit when Prise_utilisateur_valide;
+			end loop;
+->
+			loop
+				--instructions
+				if Nombre_allumettes_a_retirer <= 3 and Nombre_allumettes_a_retirer >= 1 then
+					--instructions
+					else
+						--instructions
+					end if;
+				elsif Nombre_allumettes_a_retirer = 0 then
+					--instructions
+				elsif Nombre_allumettes_a_retirer < 0 then
+					Put("jeux abandonne")
+					Prise_utilisateur_valide := True;
+					Nombre_allumettes_restantes = 0 --pour faire finir le jeu
+				else
+					--instructions
+				end if;
+			exit when Prise_utilisateur_valide;
+			end loop;
+
+--------------------------------------------------------------------------------
